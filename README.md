@@ -11,10 +11,10 @@ You can install the development version of howoldru like so:
 devtools::install_github("BacZemin/howoldru")
 #> Downloading GitHub repo BacZemin/howoldru@HEAD
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>      checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/Rtmp0b3yNT/remotesf50c703494e6/BacZemin-howoldru-af5c159/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/Rtmp0b3yNT/remotesf50c703494e6/BacZemin-howoldru-af5c159/DESCRIPTION’ (1.4s)
-#>   ─  preparing ‘howoldru’: (634ms)
+#>      checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpsrxZSx/remotes1188556ac8375/BacZemin-howoldru-9d6d518/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpsrxZSx/remotes1188556ac8375/BacZemin-howoldru-9d6d518/DESCRIPTION’ (839ms)
+#>   ─  preparing ‘howoldru’:
 #>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts (691ms)
+#>   ─  checking for LF line-endings in source and make files and shell scripts (608ms)
 #>   ─  checking for empty or unneeded directories
 #> ─  building ‘howoldru_0.0.0.9000.tar.gz’
 #>      
@@ -25,22 +25,20 @@ devtools::install_github("BacZemin/howoldru")
 
 ``` r
 library(howoldru)
+set.seed(42)
 
 # Create some example data
 required_probes <- howoldru_data$probe_list
-example_probes <- c(required_probes[1:min(50, length(required_probes))])
 
-DNAme_matrix <- matrix(runif(length(example_probes) * 2),
-                   nrow = length(example_probes), ncol = 2,
-                   dimnames = list(example_probes, c("S1", "S2")))
+DNAme_matrix <- matrix(runif(length(required_probes) * 2),
+                   nrow = length(required_probes), ncol = 2,
+                   dimnames = list(required_probes, c("S1", "S2")))
 
 # Estimate age
 howoldru(DNAme_matrix)
-#> [1] "Number of represented howoldru CpGs: 50 out of 221"
-#> Warning in howoldru(DNAme_matrix): Only 50 out of 221 required CpGs were found
-#> in the data matrix. Results may be less accurate.
+#> [1] "Number of represented howoldru CpGs: 221 out of 221"
 #>       S1       S2 
-#> 19.20345 27.51028
+#> 46.11436 61.25904
 ```
 
 ## Vignette / Detailed Example
@@ -49,8 +47,22 @@ A detailed example demonstrating how to download data, run the
 `howoldru` clock, and compare results is available in the package
 vignette.
 
+## Vignette / Detailed Example
+
+A detailed example demonstrating how to download data, run the
+`howoldru` clock, and compare results is available in the package
+vignette.
+
+- **View the rendered vignette directly on GitHub:**
+  - **[howoldru_introduction.html](inst/doc/howoldru_introduction.html)**
+
+*(Note: The standard R command `browseVignettes("howoldru")` may not
+work after installation due to unresolved build issues.)*
+
+- You can also view the vignette source code here:
+  - **[howoldru_introduction.Rmd](vignettes/howoldru_introduction.Rmd)**
+
 ``` r
-library(howoldru)
 browseVignettes("howoldru")
 #> No vignettes found by browseVignettes("howoldru")
 ```

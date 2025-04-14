@@ -43,12 +43,14 @@ howoldru(DNAme_matrix)
 
 ## Vignette / Detailed Example
 
-https://rpubs.com/BacZemin/1297456
-
 A detailed example demonstrating how to download data, run the `howoldru` clock, and compare results is available in the package vignette.
 
-NEEDS FIXING
-```{r}
+**View the rendered vignette directly on GitHub:**
+**[howoldru_introduction.html](inst/doc/howoldru_introduction.html)**
+
+back up link: https://rpubs.com/BacZemin/1297456
+
+```{r eval=FALSE}
 browseVignettes("howoldru")
 ```
 

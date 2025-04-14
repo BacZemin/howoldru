@@ -9,16 +9,8 @@ You can install the development version of howoldru like so:
 
 ``` r
 devtools::install_github("BacZemin/howoldru")
-#> Downloading GitHub repo BacZemin/howoldru@HEAD
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>      checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpSUDq7x/remotes11b402c78d4b9/BacZemin-howoldru-617e065/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpSUDq7x/remotes11b402c78d4b9/BacZemin-howoldru-617e065/DESCRIPTION’ (759ms)
-#>   ─  preparing ‘howoldru’:
-#>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts (676ms)
-#>   ─  checking for empty or unneeded directories
-#> ─  building ‘howoldru_0.0.0.9000.tar.gz’
-#>      
-#> 
+#> Skipping install of 'howoldru' from a github remote, the SHA1 (0eddd2c2) has not changed since last install.
+#>   Use `force = TRUE` to force installation
 ```
 
 ## Main function
@@ -47,16 +39,11 @@ A detailed example demonstrating how to download data, run the
 `howoldru` clock, and compare results is available in the package
 vignette.
 
-## Vignette / Detailed Example
+**View the rendered vignette directly on GitHub:**
+**[howoldru_introduction.html](inst/doc/howoldru_introduction.html)**
 
-A detailed example demonstrating how to download data, run the
-`howoldru` clock, and compare results is available in the package
-vignette.
-
-- **View the rendered vignette directly on GitHub:**
-  - **[howoldru_introduction.html](/doc/howoldru_introduction.html)**
+back up link: <https://rpubs.com/BacZemin/1297456>
 
 ``` r
 browseVignettes("howoldru")
-#> No vignettes found by browseVignettes("howoldru")
 ```

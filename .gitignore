@@ -47,6 +47,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
-inst/doc
+#inst/doc
 /doc/
 /Meta/

@@ -11,10 +11,10 @@ You can install the development version of howoldru like so:
 devtools::install_github("BacZemin/howoldru")
 #> Downloading GitHub repo BacZemin/howoldru@HEAD
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>      checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpsrxZSx/remotes1188556ac8375/BacZemin-howoldru-9d6d518/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpsrxZSx/remotes1188556ac8375/BacZemin-howoldru-9d6d518/DESCRIPTION’ (839ms)
+#>      checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpSUDq7x/remotes11b402c78d4b9/BacZemin-howoldru-617e065/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/RtmpSUDq7x/remotes11b402c78d4b9/BacZemin-howoldru-617e065/DESCRIPTION’ (759ms)
 #>   ─  preparing ‘howoldru’:
 #>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts (608ms)
+#>   ─  checking for LF line-endings in source and make files and shell scripts (676ms)
 #>   ─  checking for empty or unneeded directories
 #> ─  building ‘howoldru_0.0.0.9000.tar.gz’
 #>      
@@ -54,13 +54,7 @@ A detailed example demonstrating how to download data, run the
 vignette.
 
 - **View the rendered vignette directly on GitHub:**
-  - **[howoldru_introduction.html](inst/doc/howoldru_introduction.html)**
-
-*(Note: The standard R command `browseVignettes("howoldru")` may not
-work after installation due to unresolved build issues.)*
-
-- You can also view the vignette source code here:
-  - **[howoldru_introduction.Rmd](vignettes/howoldru_introduction.Rmd)**
+  - **[howoldru_introduction.html](/doc/howoldru_introduction.html)**
 
 ``` r
 browseVignettes("howoldru")

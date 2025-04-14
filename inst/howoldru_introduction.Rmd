@@ -1,0 +1,127 @@
+---
+title: "how to use howoldru function"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{owoldru}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+
+## Introduction
+The howoldru package provides a function, howoldru(), to estimate biological age based on DNA methylation data from Illumina 450k or EPIC arrays. This vignette demonstrates how to use the package with a real dataset downloaded from the Gene Expression Omnibus (GEO).
+
+(Optional: Add a sentence or two here about the specific biological basis or origin of your 'howoldru' clock if you have that information, e.g., "The underlying model uses N CpG sites selected based on ... and was trained on ... data.")
+
+## Example: Using GSE110554
+
+We will use dataset GSE110554 from GEO, which contains Illumina HumanMethylationEPIC array data from flow sorted peripheral blood mononuclear cells (PBMCs) of healthy donors of different ages. There are 49 samples with an even mixture of sex and age. 
+
+### Downloading the Data
+
+We use the GEOquery package to download the data.To run this example yourself:
+Make sure you have the GEOquery package installed `GEOquery` from Bioconductor. 
+
+Important Note: Downloading data from GEO can take time and requires an internet connection.
+There are 50 samples of microarray data downloading which takes ~ `1 min`.
+if you want. a smaller dataset to test, use `GSE110554` (if so, you'll have to edit the pData to characteristics_ch1.3 to extract age)
+
+
+```{r}
+# Ensure necessary packages for the vignette are loaded
+library(howoldru)
+library(GEOquery)
+library(Biobase) # Needed for ExpressionSet objects
+library(dplyr)   # Needed for data manipulation
+library(ggplot2) # Needed for plotting
+```
+
+
+```{r}
+# This chunk downloads the data. Set eval=TRUE to run it.
+gse_list <- GEOquery::getGEO("GSE110554", GSEMatrix = TRUE, getGPL = FALSE)
+# also GSE110554 is an option
+gse <- gse_list[[1]]
+print(gse)
+```
+### prepare the dataset
+
+The howoldru() function requires a DNA methylation beta value matrix as input, with CpG site identifiers as row names and sample identifiers as column names. We can extract this directly from the ExpressionSet object downloaded from GEO.
+
+```{r}
+# Extract beta values (CpGs rows, Samples columns)
+beta_matrix <- Biobase::exprs(gse)
+
+# Extract phenotype data
+pheno_data <- Biobase::pData(gse)
+
+reported_ages_df <- pheno_data %>%
+  dplyr::transmute( # transmute keeps only the new column and grouping vars if any
+    SampleID = geo_accession, # Use geo_accession as sample ID
+    ReportedAge = suppressWarnings(as.numeric(sub("age: ", "", characteristics_ch1.15)))
+  ) %>%
+  dplyr::filter(!is.na(ReportedAge)) # Keep only samples with valid numeric age
+head(reported_ages_df)
+
+# Ensure beta matrix only contains samples with valid age for comparison
+beta_matrix <- beta_matrix[, reported_ages_df$SampleID]
+
+# check if it works. 
+head(reported_ages_df)
+```
+
+### running the function
+
+```{r}
+# Run the clock function
+predicted_ages <- howoldru(beta_matrix)
+
+# Show the first few results
+head(predicted_ages)
+```
+
+```{r}
+# Combine results into a data frame for plotting
+results_df <- data.frame(
+  SampleID = names(predicted_ages),
+  PredictedAge = predicted_ages
+)
+results_df <- dplyr::inner_join(reported_ages_df, results_df, by = "SampleID")
+
+# Display first few results
+
+# Calculate Pearson correlation
+correlation <- cor(results_df$ReportedAge, results_df$PredictedAge)
+
+# Calculate Mean Absolute Error (MAE)
+mae <- mean(abs(results_df$ReportedAge - results_df$PredictedAge))
+
+
+ggplot(results_df, aes(x = ReportedAge, y = PredictedAge)) +
+  geom_point(alpha = 0.7) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  # Set axis limits from 0 to 100
+  coord_cartesian(xlim = c(0, 100), ylim = c(0, 100)) +
+  labs(
+    title = "howoldru Predicted vs. Reported Age",
+    # Include Correlation and MAE in the subtitle
+    subtitle = paste("GSE112618 | Pearson Cor =", round(correlation, 3), "| MAE =", round(mae, 2)),
+    x = "Reported Chronological Age",
+    y = "Predicted Age (howoldru)"
+  ) +
+  theme_minimal() # Use a minimal theme
+```
+
+
+

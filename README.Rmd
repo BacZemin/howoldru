@@ -1,0 +1,44 @@
+---
+output: NAI 
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# howoldru
+
+The goal of howoldru is to predict your age via DNAme data
+
+## Installation
+
+You can install the development version of howoldru like so:
+
+```{r install}
+# install.packages("devtools") # If needed
+devtools::install_github("BacZemin/howoldru")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(howoldru)
+
+# Create some example data (replace with a better example if possible)
+data(howoldru_data)
+required_probes <- howoldru_data$probe_list
+example_probes <- c(required_probes[1:min(50, length(required_probes))], paste0("cg_dummy", 1:20))
+DNAme_matrix <- matrix(runif(length(example_probes) * 2),
+                   nrow = length(example_probes), ncol = 2,
+                   dimnames = list(example_probes, c("S1", "S2")))
+
+# Estimate age
+howoldru(DNAme_matrix)
+```

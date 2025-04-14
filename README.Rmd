@@ -54,3 +54,10 @@ back up link: https://rpubs.com/BacZemin/1297456
 browseVignettes("howoldru")
 ```
 
+## Acknowledgements 
+
+Zachary Debruine 
+Nathan Spix 
+VAI-HPC (Zack Ramjan, Matt Hoffman)
+
+

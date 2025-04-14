@@ -28,14 +28,14 @@ devtools::install_github("BacZemin/howoldru")
 
 ```{r example}
 library(howoldru)
+set.seed(42)
 
 # Create some example data
 required_probes <- howoldru_data$probe_list
-example_probes <- c(required_probes[1:min(50, length(required_probes))])
 
-DNAme_matrix <- matrix(runif(length(example_probes) * 2),
-                   nrow = length(example_probes), ncol = 2,
-                   dimnames = list(example_probes, c("S1", "S2")))
+DNAme_matrix <- matrix(runif(length(required_probes) * 2),
+                   nrow = length(required_probes), ncol = 2,
+                   dimnames = list(required_probes, c("S1", "S2")))
 
 # Estimate age
 howoldru(DNAme_matrix)
@@ -46,7 +46,6 @@ howoldru(DNAme_matrix)
 A detailed example demonstrating how to download data, run the `howoldru` clock, and compare results is available in the package vignette.
 
 ```{r}
-library(howoldru)
 browseVignettes("howoldru")
 ```
 

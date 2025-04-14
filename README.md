@@ -9,8 +9,16 @@ You can install the development version of howoldru like so:
 
 ``` r
 devtools::install_github("BacZemin/howoldru")
-#> Skipping install of 'howoldru' from a github remote, the SHA1 (28462f3a) has not changed since last install.
-#>   Use `force = TRUE` to force installation
+#> Downloading GitHub repo BacZemin/howoldru@HEAD
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>      checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/Rtmp0b3yNT/remotesf50c703494e6/BacZemin-howoldru-af5c159/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/dx/m03lf1sn56l6727mnb34gx1w0000gr/T/Rtmp0b3yNT/remotesf50c703494e6/BacZemin-howoldru-af5c159/DESCRIPTION’ (1.4s)
+#>   ─  preparing ‘howoldru’: (634ms)
+#>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+#>   ─  checking for LF line-endings in source and make files and shell scripts (691ms)
+#>   ─  checking for empty or unneeded directories
+#> ─  building ‘howoldru_0.0.0.9000.tar.gz’
+#>      
+#> 
 ```
 
 ## Main function
@@ -32,7 +40,7 @@ howoldru(DNAme_matrix)
 #> Warning in howoldru(DNAme_matrix): Only 50 out of 221 required CpGs were found
 #> in the data matrix. Results may be less accurate.
 #>       S1       S2 
-#> 24.82436 35.87979
+#> 19.20345 27.51028
 ```
 
 ## Vignette / Detailed Example

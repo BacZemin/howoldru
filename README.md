@@ -1,6 +1,5 @@
 
-![Alternative text for screen readers (describe the
-image)](inst/nai-logo.png) \# howoldru
+![logo for NAI package](inst/nai-logo.png) \# howoldru
 
 The goal of howoldru is to predict your age via DNAme data
 
@@ -10,7 +9,7 @@ You can install the development version of howoldru like so:
 
 ``` r
 devtools::install_github("BacZemin/howoldru")
-#> Skipping install of 'howoldru' from a github remote, the SHA1 (28435eb4) has not changed since last install.
+#> Skipping install of 'howoldru' from a github remote, the SHA1 (28462f3a) has not changed since last install.
 #>   Use `force = TRUE` to force installation
 ```
 
@@ -33,5 +32,17 @@ howoldru(DNAme_matrix)
 #> Warning in howoldru(DNAme_matrix): Only 50 out of 221 required CpGs were found
 #> in the data matrix. Results may be less accurate.
 #>       S1       S2 
-#> 28.80886 35.73996
+#> 24.82436 35.87979
+```
+
+## Vignette / Detailed Example
+
+A detailed example demonstrating how to download data, run the
+`howoldru` clock, and compare results is available in the package
+vignette.
+
+``` r
+library(howoldru)
+browseVignettes("howoldru")
+#> No vignettes found by browseVignettes("howoldru")
 ```

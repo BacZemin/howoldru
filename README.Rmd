@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![Alternative text for screen readers (describe the image)](inst/nai-logo.png)
+![logo for NAI package](inst/nai-logo.png)
 # howoldru
 
 The goal of howoldru is to predict your age via DNAme data
@@ -25,7 +25,6 @@ devtools::install_github("BacZemin/howoldru")
 ```
 
 ## Main function 
-
 
 ```{r example}
 library(howoldru)
@@ -41,3 +40,13 @@ DNAme_matrix <- matrix(runif(length(example_probes) * 2),
 # Estimate age
 howoldru(DNAme_matrix)
 ```
+
+## Vignette / Detailed Example
+
+A detailed example demonstrating how to download data, run the `howoldru` clock, and compare results is available in the package vignette.
+
+```{r}
+library(howoldru)
+browseVignettes("howoldru")
+```
+

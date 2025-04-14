@@ -2,7 +2,7 @@
 title: "how to use howoldru function"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to the howoldru Package}
+  %\VignetteIndexEntry{how to use howoldru function}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
